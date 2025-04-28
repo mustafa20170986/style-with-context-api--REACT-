@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const sec = "i love you emu"
+const sec = "i love you emu"//id token secrect key
 function gen(user){//genereate id token 
 return jwt.sign({id:user.id},sec,{expiresIn:"10m"})
 }
