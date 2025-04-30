@@ -1,0 +1,5 @@
+techniccally this project is to understanad the process of jwt alongside passport js 
+the dataabse is kind of dum jsut a simulation what to storew in the db 
+from scratch every time you registre it will take 20-30 seconds and then success . then log in 
+but the probblem is everyb time you restart the serveryoou ahve to start fomr registration . you cannot login directly 
+aand the dash app might not be  working bcz state problem will try to optimize this futhure more 
