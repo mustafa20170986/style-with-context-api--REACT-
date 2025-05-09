@@ -1,5 +1,5 @@
 const express = require('express')
-const prisma = require('./src/client.js')
+const  prisma= require('./client')
 const route = require('./src/routers/route.js')
 const router2 =require('./src/routers/route2.js')
 const emu = express()
