@@ -1,47 +1,32 @@
-// jwt.js
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 
-const acsec = "ilove you emu";   // Access token secret
-const refsec = "i love you oni"; // Refresh token secret
+const acsec = "i love you emu"
+const refsec ="i love you oni"
 
-function genac(user) {//generate access token
-  return jwt.sign(
-    {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    },
-    acsec,
-    { expiresIn: "60m" }
-  );
+function genac(user,sessionid){//generate access token
+  return jwt.sign({
+id:user.id,
+email:user.email,
+role:user.role,
+permissions:user.permissions,
+sessionid
+  },acsec,{expiresIn:"5h"})
 }
 
-function genref(user, tid) {//generate refresh token
-  return jwt.sign(
-    {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      tokenid: tid,
-    },
-    refsec,
-    { expiresIn: "10d" }
-  );
+function genref(user,sessionid){
+  return jwt.sign({
+    id:user.id,
+email:user.email,
+role:user.role,
+permissions:user.permissions,
+sessionid
+  },refsec,{expiresIn:"10d"})
 }
 
-function vertok(token) {//verify access token and return its payload
-  return jwt.verify(token, acsec);
+function verify(token){//verify token
+  return jwt.verify(token,acsec)
 }
 
-function verref(token) {// verify refresh token
-  return jwt.verify(token, refsec);
+module.exports={
+  genac,genref,verify
 }
-
-module.exports = {
-  genref,
-  genac,
-  vertok,
-  verref,
-  acsec,
-  refsec,
-};

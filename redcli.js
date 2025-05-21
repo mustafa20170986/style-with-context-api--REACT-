@@ -1,16 +1,10 @@
-// redcli.js
-const redis = require("redis");
-const client = redis.createClient();
+const redis = require("redis")
 
-client.on('error', (err) => {// if there is an error 
-  console.error('Redis client error:', err);
-});
+const client = redis.createClient()
 
-async function connect() {// if not error then
-  if (!client.isOpen) {//if the client is not open 
-    await client.connect();// connect the client 
-    console.log("Redis connected");
+async function redcli(){
+  if(!client.isOpen){
+   await client.connect()
   }
 }
-
-module.exports = { client, connect };
+module.exports = {redcli,client}

@@ -1,28 +1,27 @@
-// loc.js
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
+const passport =require("passport")
+const LocalStrategy =require("passport-local").Strategy
+const bcrypt =require("bcryptjs")
 
-// Dummy user for demonstration
-const fuser = {
-  id: 1,
-  name: "Emu",
-  email: "emu2017@gmail.com",
-  password: bcrypt.hashSync('sha-256', 10),
-  permissions: ["read", "write"],
-};
+const user ={//hardcoded user 
+  email:"emu2017@gmail.com",
+  id:2017,
+  password:bcrypt.hashSync("password",10),
+  role:'admin',
+  permissions:["read","write"]
+}
 
-passport.use(
-  new LocalStrategy({ usernameField: 'email' }, (email, pass, done) => {//custom fields
-    if (email !== fuser.email) {// if email not matched with user email
-      return done(null, false, { msg: "Incorrect email" });// show error
+passport.use(//local strategy
+  new LocalStrategy({usernameField:'email'},(email,password,done)=>{//custom fields
+const findemail =email ===user.email ? user:null//if email match with user email
+if(!findemail){
+  return done(null,false,{msg:"user not found"})
+}
+  bcrypt.compare(password,findemail.password,(err,isMatch)=>{// if password match with user password 
+    if(err ||!isMatch){
+      return done(null,false,{msg:"password incorrect"})
     }
-    bcrypt.compare(pass, fuser.password, (err, res) => {//compare password with suer password 
-      if (err) return done(err);
-      if (!res) return done(null, false, { msg: "Password incorrect" });
-      return done(null, fuser);//if oaky return the user object 
-    });
+    return done(null,user)
   })
-);
-
-module.exports = passport;
+  }
+))
+module.exports = passport
