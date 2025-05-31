@@ -1,0 +1,5 @@
+after fully doing every thing make docker image container 
+(before doing all the stuff make sure your docker dekstop is running)
+docker build . -t reverseproxy
+docker build -t customnginx .
+docker -d -p 8080:80 --name reverseproxy customnginx
