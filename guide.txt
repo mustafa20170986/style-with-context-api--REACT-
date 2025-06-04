@@ -1,5 +1,12 @@
-after fully doing every thing make docker image container 
-(before doing all the stuff make sure your docker dekstop is running)
-docker build . -t reverseproxy
-docker build -t customnginx .
-docker -d -p 8080:80 --name reverseproxy customnginx
+lets say you have build the docler image and container 
+for any changes use this 
+dockcer cp index.html webserver:/usr/share/nginx/html/index.html // for chnage  html file 
+dockcer cp stle.css webserver:/usr/share/nginx/html/style.css // for chnage in css file
+dockcer cp nginx.conf webserver:/etc/nginx/nginx.conf  // for chaneg in the configaration in nginx 
+
+docker command for run this into test mood 
+docker exec webserver ngninx -t 
+now for real change 
+ docker exec webserver nginx -s reload
+
+if browsernot showing the control + f5 it will clear the cache 

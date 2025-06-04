@@ -1,0 +1,38 @@
+.body{
+background: #d63a3a;
+background: linear-gradient(90deg, rgba(214, 58, 58, 1) 0%, rgba(237, 221, 221, 1) 52%, rgba(157, 138, 222, 1) 100%);
+}
+.container{
+    gap:30px;
+    display:flex;
+    flex-direction:column
+}
+.name-container{
+    border:2px solid white;
+    border-radius:10px;
+    padding:10px;
+    color:white;
+    text-shadow: 2px 2px 5px deeppink;
+}
+.pass-container{
+    border:2px solid white;
+    border-radius:10px;
+    padding:10px;
+    color:white;
+    text-shadow: 2px 2px 5px deeppink;
+}
+.login{
+    color:purple;
+    background-color:skyblue;
+    border-radius:10px;
+    width: 100%;
+    display:flex;
+    cursor:pointer;
+    justify-content: center;
+}
+.page{
+    color:white;
+    text-align:center;
+    text-shadow: 5px 5px 20px deeppink;
+    
+}
