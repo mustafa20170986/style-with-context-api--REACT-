@@ -1,12 +1,7 @@
-lets say you have build the docler image and container 
-for any changes use this 
-dockcer cp index.html webserver:/usr/share/nginx/html/index.html // for chnage  html file 
-dockcer cp stle.css webserver:/usr/share/nginx/html/style.css // for chnage in css file
-dockcer cp nginx.conf webserver:/etc/nginx/nginx.conf  // for chaneg in the configaration in nginx 
+for this kind of full stack project use docker compose . make sure make the frontend and backend different do that 
+they can be connect with a network in the docker . it is easy for them to talk with each other  inside a docker container 
+single image wont work here . and you dnt need to start the server of the service file .
 
-docker command for run this into test mood 
-docker exec webserver ngninx -t 
-now for real change 
- docker exec webserver nginx -s reload
-
-if browsernot showing the control + f5 it will clear the cache 
+docker-compose up --build
+docker-compose up --build -d(run in backgorund)
+docker-compose down (delete the container )

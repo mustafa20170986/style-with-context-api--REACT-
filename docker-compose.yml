@@ -1,0 +1,28 @@
+version: '3.8'
+
+services: #services we will use 
+  backend: # we are naming the service 
+    build: #we arre tellling docker how to build this contianer 
+      context: . #use the current folder to build 
+      dockerfile: Dockerfile.node #use docker file.node not dockerfile for build 
+    container_name: node-api # name  the container 
+    ports: # expose the ports 
+      - "3000:3000"
+    networks: # connectv this port to a shared network
+      - emu-net #called emu-net 
+
+  nginx: #name the frontend  service to nginx
+    build: #buuilding this 
+      context: . #use the current folder to build 
+      dockerfile: Dockerfile.nginx # use the name dockerfile.nginx without dockerfile
+    container_name: nginx-proxy #name the docker file 
+    ports: # expose the ports
+      - "8080:80"
+    depends_on: # wait for the backend to start hte part before this one starts 
+      - backend
+    networks: #in the same network so that they can talk 
+      - emu-net
+
+networks: #define a shared netework 
+  emu-net: # name the network 
+    driver: bridge #creating a virtual lane for container to talk 
