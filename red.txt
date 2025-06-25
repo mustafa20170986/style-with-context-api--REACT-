@@ -1,0 +1,55 @@
+producer.js
+1. CONFIGURE Kafka client
+   - clientId: a name to identify this producer
+   - brokers: list of Kafka broker addresses
+   - (optional) retries, timeout, etc.
+
+2. CREATE a Kafka instance using new Kafka(config)
+
+3. CREATE a producer using kafka.producer()
+
+4. CONNECT the producer to the Kafka broker
+
+5. LOOP through your data (e.g., orders)
+
+6. FORMAT each message:
+   - key (usually a string ID, for partitioning)
+   - value (must be a JSON string)
+
+7. SEND each message to a specific topic (e.g., 'order-topic')
+
+8. LOG success (optional)
+
+9. DISCONNECT the producer after sending all messages
+
+consumer.js
+1. CONFIGURE Kafka client
+   - clientId: name to identify this consumer
+   - brokers: list of Kafka broker addresses
+   - (optional) retries, timeout, etc.
+
+2. CREATE a Kafka instance using new Kafka(config)
+
+3. DEFINE consumer options:
+   - groupId: logical group to manage offsets and load balancing
+   - fromBeginning: whether to read old messages or only new ones
+
+4. CREATE a consumer using kafka.consumer({ groupId })
+
+5. CONNECT the consumer to the Kafka broker
+
+6. SUBSCRIBE to a topic (e.g., 'order-topic')
+   - fromBeginning: true to replay past messages
+
+7. START the consumer using consumer.run()
+   - for each incoming message, extract:
+     - topic
+     - partition
+     - offset
+     - message (key & value)
+
+8. PARSE message.value (from buffer to string to JSON)
+
+9. PROCESS or LOG the message data
+
+10. (Optional) handle errors, retries, dead-letter queues

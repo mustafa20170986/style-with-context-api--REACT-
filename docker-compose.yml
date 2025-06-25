@@ -1,28 +1,36 @@
 version: '3.8'
 
-services: #services we will use 
-  backend: # we are naming the service 
-    build: #we arre tellling docker how to build this contianer 
-      context: . #use the current folder to build 
-      dockerfile: Dockerfile.node #use docker file.node not dockerfile for build 
-    container_name: node-api # name  the container 
-    ports: # expose the ports 
-      - "3000:3000"
-    networks: # connectv this port to a shared network
-      - emu-net #called emu-net 
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
 
-  nginx: #name the frontend  service to nginx
-    build: #buuilding this 
-      context: . #use the current folder to build 
-      dockerfile: Dockerfile.nginx # use the name dockerfile.nginx without dockerfile
-    container_name: nginx-proxy #name the docker file 
-    ports: # expose the ports
-      - "8080:80"
-    depends_on: # wait for the backend to start hte part before this one starts 
-      - backend
-    networks: #in the same network so that they can talk 
-      - emu-net
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-networks: #define a shared netework 
-  emu-net: # name the network 
-    driver: bridge #creating a virtual lane for container to talk 
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
