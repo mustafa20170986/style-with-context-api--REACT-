@@ -1,40 +1,39 @@
-const {Kafka} =require ("kafkajs")
-// configure the kafka 
-const kafkaconfig={
-  clientId:"emu",// client id for loggin 
-  brokers:['localhost:9092'],// thats where the messages are store 
-  connectionTimeout:3000,// if idle for 3000s then go to sleep
-  retry:{// if fail try 5 times
-    retries:5
+const {Kafka} =require('kafkajs')
+
+const kafka = new Kafka({
+
+clientId:'producer',
+brokers:['localhost:9092']
+})
+const producer= kafka.producer({idempotent:true})// to ignore duplicates
+
+const run = async()=>{
+  try{
+  await producer.connect()
+  console.log("producer is connedcted")
+  for (let i=1;i<5;i++){
+     const order = { orderId: i, userId: `u${i % 3}` };
+      await producer.send({
+topic:'order',
+acks:-1,
+messages:[{key:order.userId,value:JSON.stringify(order)}]
+     }) 
+     console.log("order sent")
   }
+  for(let i=1;i<=3;i++){// for simulating order 
+      const payment = { paymentId: 100 + i, userId: `u${i % 2}` };
+      await producer.send({
+        topic:'payment',
+        acks:-1,//all replicas to confirm for receive msg
+        messages:[{key:payment.userId,value:JSON.stringify(payment)}]
+      })
+      console.log(" payment sent")
+  }
+  await producer.disconnect()
 }
 
-const orders= [// dummy database
-  {id:1,name:"emu",product:"samusng galaxy s23 ultra"},
-  {id:2,name:"oni",product:"iphone 14 pro"}
-]
-//configure the producer 
-const pdr=async()=>{
-  const kafka= new Kafka(kafkaconfig)//wrap kafka config
-  const producer =kafka.producer() //defining the producer . its the syntax dont chnage it 
-  try{// for error handling try cactch
-    await producer.connect()// wait producer to connect
-
-    for(const order of orders){// iteraet the array 
-     const message={// message
-      key:String(order.id),
-      value:JSON.stringify(order)
-    }
-    await producer.send({//send the message 
-      topic:'order-topic',// this must be match with the subscribe in consumer 
-      messages:[message]// sending the message
-    })
-    console.log(` thank you ${order.name} for purchasing ${order.product}`)
-  }
-  await producer.disconnect()// disconnnect after sending message
-}
 catch(error){
-console.log("kafka error encounterd")
+  console.log("producer sending error",error)
 }
 }
-pdr()// function recall to run the programm
+run()
