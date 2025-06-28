@@ -1,7 +1,0 @@
-for this kind of full stack project use docker compose . make sure make the frontend and backend different do that 
-they can be connect with a network in the docker . it is easy for them to talk with each other  inside a docker container 
-single image wont work here . and you dnt need to start the server of the service file .
-
-docker-compose up --build
-docker-compose up --build -d(run in backgorund)
-docker-compose down (delete the container )
