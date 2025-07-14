@@ -1,24 +1,44 @@
-const{Kafka} = require("kafkajs")
+const {Kafka, CompressionTypes} = require("kafkajs")
 
-//this is the pipeline between the producer and all cosumer 
-
+//kafka instance config 
 const kafka = new Kafka({
-  clientId:"consusmergrp",
+  clientId:"trans-consumer",
   brokers:["localhost:9093"]
+}) 
+
+
+const consumer = kafka.consumer({groupId:"cons-grp1"})
+
+const deadletter= kafka.producer() //init the dead letter prodcuer 
+
+const run =async()=>{
+  await consumer.connect() //connnect the consumer 
+  await deadletter.connect() // cnnncet the consnumer (as a dead letter)
+
+  await consumer.subscribe({topic:"bank_transfer",fromBeginning:true}) // subscribe to the topic
+
+  await consumer.run({
+    eachBatch:async({batch,resolveOffset,heartbeat})=>{ // this is a batch processing for each ,message processing 
+      console.log("batch processing message")
+    
+    for(const message of batch.messages){
+      const data=JSON.parse(message.value.toString())
+      console.log(`transaction data`,data)
+
+
+      if(data.amount>500){ // if the amaount i sgreater tghan 500 then  sedn a fraud alert
+        console.log("fraud detected")
+
+        await deadletter.send({ //send  the p;roblamitc message kin the dead ltetter topic 
+        topic:"deadletter", // the topic wwhere the dead letter will be sent 
+        messages:[{value:JSON.stringify(data)}], 
+        compression:CompressionTypes.GZIP // compress the messgae for efficincy 
+        })
+      }
+      resolveOffset(message.offset)
+      await heartbeat()
+    }
+  }
 })
-
-const consumer = kafka.consumer({groupId:"consumer-grp"})
-
-const main=async()=>{
-  await consumer.connect()
-
-  await consumer.subscribe({topic:"send-success",fromBeginning:true})
-  await consumer.subscribe({topic:"fund-add",fromBeginning:true})
-  await consumer.subscribe({topic:"history",fromBeginning:true})
-    await consumer.run({
-        eachMessage: async ({ topic, message }) => {
-            console.log(`[${topic}] ${message.value.toString()}`);
-        }
-    });
 }
-main()
+run()

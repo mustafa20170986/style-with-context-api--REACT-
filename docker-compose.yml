@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   zookeeper:
@@ -10,22 +9,44 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
-  kafka:
+
+  kafka1:
+  #previously there was only one kafka cluster now we have  two kafka cllusters kafka 1 and kafka 2
     image: confluentinc/cp-kafka:7.6.0
-    container_name: kafka
+    container_name: kafka1
     ports:
       - "9092:9092"
       - "9093:9093"
+      # port on host and port on machine 
     depends_on:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092,PLAINTEXT_HOST://localhost:9093
+      #PLAINTEXT://kafka1:9092,PLAINTEXT_HOST://localhost:9093 kafka1 in plian text
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2 #previouslyv it was one .
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 2 #1 prev
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+  kafka2:
+  # and here is the second kafk cluster with config 
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: kafka2
+    ports:
+      - "9094:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9092,PLAINTEXT_HOST://localhost:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2 #2 replication factor 
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 2
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
 
   kafka-ui:
@@ -34,8 +55,12 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - kafka
+      - kafka1
+      - kafka2 
+      # put space after - the write kafka1
+       #previolusly it depnds on only one kafka noeew we have the 2 kaaf ka clusters 
     environment:
       KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092,kafka2:9092
+      #previously it was only kafka:9092 
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
