@@ -1,0 +1,56 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "emu.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^3.9.0",
+    "@prisma/client": "^6.4.1",
+    "apollo-server": "^3.13.0",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "bullmq": "^5.53.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "cookie-parse": "^0.4.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-graphql": "^0.12.0",
+    "express-session": "^1.18.1",
+    "graphql": "^15.10.1",
+    "jsonwebtoken": "^9.0.2",
+    "kafkajs": "^2.2.4",
+    "nodemailer": "^7.0.3",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.13.3",
+    "prisma": "^6.4.1",
+    "redis": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.0.0",
+    "typescript": "^5.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mustafa20170986/subscription-regular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mustafa20170986/subscription-regular/issues"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "homepage": "https://github.com/mustafa20170986/subscription-regular#readme",
+  "description": ""
+}
