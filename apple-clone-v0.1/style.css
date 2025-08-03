@@ -1,0 +1,598 @@
+body{
+display:flex;
+flex-direction: column;
+}
+
+.content{
+    gap:0px;
+}
+.navigationbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+     background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+     
+}
+.navigationbar ul{
+   
+    list-style: none;
+     display: flex;  /* THIS IS CRUCIAL: Makes it a flex container */
+    flex-wrap:wrap; /* Prevents list items from wrapping */
+    justify-content: center; /* Center the navigation items horizontally */
+    align-items: center;
+    margin:0;
+   
+}
+.navigationbar li{
+  flex-shrink: 0;
+  display:flex;
+      flex-wrap:wrap;
+   
+    
+}
+.iphone{
+    justify-content: center;
+    text-align: center;
+    padding:10px;
+    border:1px solid black;
+    
+}
+
+
+.ilearn{
+    height:50px;
+    width:100px;
+    border-radius:30px;
+    border:1px solid white;
+    background-color:rgb(67, 162, 226);
+    color:white;
+}
+
+.ibuy{
+    height:50px;
+    width:100px;
+    border-radius:30px;
+    border: 2px solid skyblue;
+    color:rgb(67, 162, 226);
+}
+
+.iimg img{
+width:100%;
+display:block;
+justify-content: center;
+align-items: center;
+height:100%;
+width:100%;
+
+
+}
+.iphone-wrapper{
+    display:flex;
+}
+.msg-wrapper {
+     /* Defines the fixed height of the container */
+    margin-top:20px;
+     position: relative;
+    overflow: hidden; /* Ensures any content outside this height is clipped */
+    /* Optional: Add a width to see the container more clearly */
+    /* width: 200px; */
+    /* border: 1px solid #ccc; */
+}
+
+.msg {
+    display: block; /* Default for a div, ensures it takes full width */
+    width: 100%; /* Makes .msg take full width of .msg-wrapper */
+    height: 100%; /* Make .msg take full height of .msg-wrapper */
+    /* Removed: 'justify-content: center;' (no effect with display: block) */
+    /* Removed: 'object-fit: cover;' (no effect on a div) */
+    overflow: hidden; /* Good practice, though msg-wrapper's overflow might suffice */
+}
+
+.msg img {
+    height: 100%; /* Image takes 100% of the height of its parent (.msg) */
+    width: 100%; /* Image takes 100% of the width of its parent (.msg) */
+    object-fit: cover; /* KEY: Image scales to cover the area, cropping if needed */
+    display: block; /* Removes extra space below the image */
+margin-top:1px;
+}
+
+.airpods{
+     height:50px;
+    width:100px;
+    border-radius:30px;
+    border: 2px solid skyblue;
+    color:rgb(67, 162, 226);
+}
+
+.chief-wrapper{
+    position:relative;
+    overflow:hidden;
+    margin-top:10px;
+   height:100vw;
+   width:suto;
+}
+.chief{
+    display:block;
+overflow:hidden;
+height:100%;
+width:100%;
+position:relative;
+    align-items: center;
+}
+.chief img {
+    height:100%;
+    width:100%;
+    object-fit:cover;
+    z-index:1;
+    position:absolute;
+    top:0;
+    left:0;
+    display:block;
+}
+.cow{
+    position:absolute;
+    z-index: 2;
+    position: absolute; /* Correct: Place .cow on top of the image */
+    z-index: 2; /* Correct: Place .cow above the image */
+    text-align: center; /* Correct: Centers h2, p, button text within .cow */
+    
+    /* --- CRITICAL ADDITIONS FOR .cow CENTERING AND VISIBILITY --- */
+    color: white; /* Make text visible on a dark background */
+    top: 50%; /* Position .cow's top edge at the vertical midpoint */
+    left: 50%; /* Position .cow's left edge at the horizontal midpoint */
+    transform: translate(-50%, -50%); /* Shift .cow back by half its own width/height to truly center it */
+    width: 90%; /* Give .cow a width so text-align:center works across the container */
+    max-width: 400px;
+}
+
+.stream{
+     height:50px;
+    width:140px;
+    border-radius:30px;
+    border: 2px swhite;
+    color:black;
+}
+.grid-wrapper{
+    display:grid;
+    grid-template-columns:repeat(2 ,1fr) ;
+    grid-auto-rows:minmax(450px auto);
+    gap:20px;
+  max-width:1400px;
+  margin:0 auto;
+
+}
+.cont1{
+    border:1px solid black;
+     height:100%;
+     width:100%;
+}
+.cont1 img{
+    position:relative ;
+    object-fit: cover;
+    overflow:hidden;
+    height:100%;
+    width:100%
+}
+.inner-txt1{
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+    color:white;
+  width:50%;
+    align-items: center;
+    justify-content: center;;
+}
+.inner-txt1 p{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width:50%;
+    z-index: 1;
+    text-align:center;
+    color:white;
+    justify-items: center;
+    
+}
+.padbutton{
+    padding-top: 50px;
+    display:flex;
+   gap:45px;
+   margin-top:20px;
+   justify-content: center;
+}
+.padbuy{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border: 2px solid skyblue;
+    color:rgb(67, 162, 226);
+background-color:  black;
+}
+.padlear{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border:1px;
+    color:white;
+background-color:  rgb(67, 162, 226);
+
+}
+
+
+.cont2{
+    border:1px solid black;
+     height:100%;
+     width:100%;
+     display:block;
+}
+.cont2 img{
+    position:relative ;
+    object-fit: cover;
+    overflow:hidden;
+    height:100%;
+    width:100%
+}
+.inner-txt2{
+    z-index:2;
+    position:absolute;
+     color:white;
+    width:50%;
+    text-align: center;
+    margin-top:36%;
+}
+.inner-txt2 p{
+    color:white;
+    width:50%;
+    text-align: center;
+}
+
+.int{
+   display:flex;
+   gap:45px;
+   margin-top:20px;
+   justify-content: center;
+}
+.wcc{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border: 2px solid skyblue;
+    color:rgb(67, 162, 226);
+background-color: black;
+}
+.lmm{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border:1px;
+    color:white;
+background-color:  rgb(67, 162, 226);
+
+}
+.cont3{
+    border:1px solid black;
+     width:100%;
+     height:100%;
+}
+
+.cont3 img{
+    position:relative ;
+    object-fit: cover;
+    overflow:hidden;
+    height:100%;
+    width:100%
+}
+.inner-txt3{
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+  width:50%;
+    align-items: center;
+    justify-content: center;;
+}
+.inner-txt3 p{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width:50%;
+    z-index: 1;
+    text-align:center;
+    color:white;
+    justify-items: center;
+    
+}
+.airbtn{
+    padding-top: 50px;
+    display:flex;
+   gap:30px;
+   margin-top:20px;
+   justify-content: center;
+}
+.airbuy{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+   border:1px;
+    color:white;
+background-color:rgb(67, 162, 226)  ;
+}
+.airlearn{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border:1px solid skyblue;
+    color: rgb(67, 162, 226);
+background-color:
+
+}
+.cont4{
+    border:1px solid black;
+     height:100%;
+     width:100%;
+}
+
+.cont4 img{
+    position:relative ;
+    object-fit: cover;
+    overflow:hidden;
+    height:100%;
+    width:100%
+}
+.inner-txt4{
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+  width:50%;
+    align-items: center;
+    justify-content: center;
+    color:white;
+}
+.inner-txt4 p{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width:50%;
+    z-index: 1;
+    text-align:center;
+    color:white;
+    justify-items: center;
+    
+}
+.apd{
+    padding-top: 50px;
+    display:flex;
+   gap:30px;
+   margin-top:20px;
+   margin-bottom:50%;
+   justify-content: center;
+}
+.apdbuy{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+   border:1px;
+    color:white;
+background-color:rgb(67, 162, 226)  ;
+}
+.apdlrn{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+    border:1px solid skyblue;
+    color: rgb(67, 162, 226);
+}
+.cont5{
+    border:1px solid black;
+   
+     height:100%;
+     width:100%;
+}
+.cont5 img{
+   position:relative ;
+    object-fit: cover;
+    overflow:hidden;
+    height:100%;
+    width:100%;
+}
+.inner-txt5{
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+  width:50%;
+    align-items: center;
+    justify-content: center;
+    color:balck;
+}
+.inner-txt5 p{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width:50%;
+    z-index: 1;
+    text-align:center;
+    justify-items: center;
+    color:black;
+}
+.trd{
+    padding:30px;
+}
+.gts{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+   border:1px;
+    color:white;
+background-color:rgb(67, 162, 226)  ;
+}
+
+.cont6{
+     border:1px solid black;
+     height:100%;
+     width:100%;
+}
+.cont6 img{
+   object-fit: cover;
+   position:relative;
+   overflow:hidden;
+   height: 100%;
+   width:100%;
+}
+.inner-txt6 {
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+  width:50%;
+    align-items: center;
+    justify-content: center;
+    color:balck;
+}
+.inner-txt6 p{
+    display:flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width:50%;
+    z-index: 1;
+    text-align:center;
+    justify-items: center;
+    color:black;
+}
+.crd{
+    padding:30px;
+    gap:50px;
+    display:flex;
+    justify-content:center;
+}
+.capply{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+   border:1px;
+    color:rgb(67, 162, 226);
+background-color:1px solid skyblue   ;
+}
+.clearn{
+      height:50px;
+    width:100px;
+    border-radius:30px;
+   border:1px;
+    color:whitesmoke;
+background-color:rgb(67, 162, 226)  ;
+}
+
+@media (max-width: 1023px) {
+    .grid-wrapper {
+        /* Force 2 columns for a more controlled tablet layout */
+        grid-template-columns: repeat(2, 1fr); 
+        grid-auto-rows: minmax(400px, auto);
+        gap: 15px;
+        padding: 0 15px;
+    }
+
+    /* Reset desktop specific spans */
+    .cont1, .cont4 {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 400px;
+    }
+
+    /* Tablet-specific spanning (example: Make cont2 span 2 columns on tablet) */
+    .cont2 {
+        grid-column: span 2;
+    }
+
+    /* Adjust text/button sizes for tablet */
+    .inner-txt1 h1, .inner-txt2 h1, .inner-txt3 h2, .inner-txt4 h2, .inner-txt5 h2, .inner-txt6 h2 {
+        font-size: 36px;
+    }
+    .inner-txt1 span, .inner-txt2 span, .inner-txt3 span, .inner-txt4 span, .inner-txt5 span, .inner-txt6 span {
+        font-size: 18px;
+    }
+    .padbutton, .int, .airbtn, .apd, .trd, .crd {
+        gap: 15px;
+    }
+    .padlear, .padbuy, .wcc, .lmm, .airbuy, .airlearn, .apdlrn, .apdbuy, .gts, .clearn, .capply {
+        height: 40px; width: 100px; font-size: 15px;
+    }
+}
+
+/* --- Mobile Landscape / Larger Phones (e.g., 481px to 767px) --- */
+@media (max-width: 767px) {
+    .grid-wrapper {
+        /* Allow 1 or 2 columns based on space, for more "flexing" */
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+        grid-auto-rows: minmax(350px, auto);
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    /* Reset any tablet-specific spans */
+    .cont1, .cont2, .cont4 { /* Include all potentially spanned items */
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 350px;
+    }
+
+    /* Adjust text/button sizes for slightly smaller screens */
+    .inner-txt1, .inner-txt2, .inner-txt3, .inner-txt4, .inner-txt5, .inner-txt6 {
+        width: 90%;
+        padding: 5px;
+    }
+    .cont1 h1, .cont2 h1, .cont3 h2, .cont4 h2, .cont5 h2, .cont6 h2 {
+        font-size: 32px;
+    }
+    .cont1 span, .cont2 span, .cont3 span, .cont4 span, .cont5 span, .cont6 span {
+        font-size: 17px;
+    }
+
+    .padbutton, .int, .airbtn, .apd, .trd, .crd {
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .padlear, .padbuy, .wcc, .lmm, .airbuy, .airlearn, .apdlrn, .apdbuy, .gts, .clearn, .capply {
+        width: 110px; /* Keep button width reasonable */
+        height: 40px; font-size: 14px;
+    }
+}
+
+/* --- Mobile Portrait (e.g., screens up to 480px - typical phone width) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .grid-wrapper {
+        /* Force single column for smallest mobile screens */
+        grid-template-columns: 1fr; 
+        grid-auto-rows: minmax(300px, auto);
+        gap: 8px;
+        padding: 0 5px;
+    }
+
+    /* Ensure all spans are reset */
+    .cont1, .cont2, .cont3, .cont4, .cont5, .cont6 {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 300px;
+    }
+
+    /* Further adjust text/button sizes for small mobile */
+    .inner-txt1 h1, .inner-txt2 h1, .inner-txt3 h2, .inner-txt4 h2, .inner-txt5 h2, .inner-txt6 h2 {
+        font-size: 26px;
+    }
+    .inner-txt1 span, .inner-txt2 span, .inner-txt3 span, .inner-txt4 span, .inner-txt5 span, .inner-txt6 span {
+        font-size: 15px;
+    }
+
+    .padbutton, .int, .airbtn, .apd, .trd, .crd {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 8px;
+    }
+     .wcc, .lmm, .airbuy, .airlearn, .apdlrn, .apdbuy, .gts, .clearn, .capply {
+        width: 20%;
+        max-width: 200px; /* Cap button width */
+        height: 38px;
+        font-size: 14px;
+        margin: 0 auto; /* Center individual buttons when stacked */
+    }
+}
