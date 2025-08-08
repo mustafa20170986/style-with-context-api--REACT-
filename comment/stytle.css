@@ -1,0 +1,53 @@
+body{
+    background: #faf5f5;
+background: linear-gradient(90deg, rgba(250, 245, 245, 1) 0%, rgba(190, 190, 196, 1) 100%, rgba(204, 202, 207, 1) 46%);
+}
+
+.playwrite-hu-unique {
+  font-family: "Playwrite HU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+#navigation ul{
+  display:flex;
+  justify-content: space-between;
+  
+}
+#navigation{
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.spr{
+  height:11px;
+  width:100%;
+  background-color:black;
+  border-radius:5px;
+}
+
+.commentsection{
+  background-color:black;
+ border-radius:10px;
+ height:auto;
+ width:auto;
+ color:white;
+}
+
+#typ{
+  color:white;
+  text-align:center;
+}
+
+.comments input{
+  border:1px solid white;
+ margin-left:10px;
+ border-radius:5px;
+ background-color: black;
+ color:white;
+}
+
+#commentbutton{
+  border-radius:5px;
+}
