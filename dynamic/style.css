@@ -1,0 +1,46 @@
+body{
+display:flex;
+flex-direction: column; 
+gap:30px;
+background-color: #ac12124d;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.imgsec{
+    height:150px;
+    width:300px;
+
+}
+
+.imgsec img{
+    margin-top:5%;
+    height:100%;
+    width:100%;
+
+border-radius:12px;
+}
+#photobtn{
+    height:30px;
+    border-radius: 15px;
+    width:70px;
+    border:1px;
+}
+
+#submitbtn{
+ border-radius: 15px;
+ border:1px;
+  height:30px;
+}
+.card{
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+   
+}
+#selectfile{
+    display:none;
+}
