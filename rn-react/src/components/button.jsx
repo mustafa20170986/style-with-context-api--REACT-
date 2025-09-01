@@ -1,13 +1,8 @@
-// button component we will reuse
+//reuseable button with dynamic inner text and style option
 
-function Button({ className,text,onClick}){// passing className  text and onClick eventlistener as a prop to edit 
-    // the inner text and style accoridng ot our choice 
-    return(
-        <button className={className}   onClick={onClick}> 
-         {text} 
-       
-         </button>
-    )
+function Button({text,onClick,className}){ //passing the porps 
+return(
+    <button className={className} onClick={onClick}>{text}</button>
+)
 }
-
 export default Button
