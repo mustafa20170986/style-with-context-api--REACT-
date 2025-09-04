@@ -1,8 +1,9 @@
-//reuseable button with dynamic inner text and style option
-
-function Button({text,onClick,className}){ //passing the porps 
-return(
-    <button className={className} onClick={onClick}>{text}</button>
-)
+function Button({text,handlepost,className}){ //passing props
+    return(
+        <button className={className} 
+        onClick={handlepost}> {/* onclick will trigger the hadnlepost event */}
+            {text} 
+        </button>
+    )
 }
 export default Button
