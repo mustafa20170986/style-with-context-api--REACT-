@@ -1,22 +1,12 @@
-function Image({setImage}){ //passing the props 
-    const handleimage=(e)=>{ 
-const file=e.target.files[0] //locking the files for input image
+import { useContext } from "react";
+import { Store } from "./context";
+function Image(){
 
-if(file){
-    //an instance of file reader appi to read the file 
-    const reader=new FileReader()
-reader.onloadend=()=>{ // whenreadin is done 
-    setImage(reader.result) //set the data of setImage to the imaeg data
-} ;
-reader.readAsDataURL(file)//convert base 64
-
-    }
-}
-return(
-<input type="file" accpect="image/*"
-onChange={handleimage} 
-className="border-white bg-white text-teal-500 rounded-xl "
-/>
-)}
-
-export  default Image
+    const{Heroimg,className}=useContext(Store)
+    return(
+          <div className="h-80 w-full">
+                <img src={Heroimg} alt="logo"
+                className={className}/> 
+            </div>
+    )
+}export default Image
